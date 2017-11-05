@@ -6,7 +6,7 @@ var geocoder;
 function initialize() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map_canvas"));
-    map.setCenter(new GLatLng(35.169564,136.882782), 16);
+    map.setCenter(new GLatLng(35.710286, 139.777217), 16);
 
     geocoder = new GClientGeocoder();
     GEvent.addListener(map, "click", clickMap);
