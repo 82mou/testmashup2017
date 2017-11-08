@@ -2,13 +2,18 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>地図練習</title>
+	<title>カメラ起動</title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
-<h1>はつしの気持ち</h1>
-<video id="video" autoplay playsinline></video>
+<main>
+	<h1>はつしの気持ち</h1>
+	<p>元画像 <span id="src-width-height">width: height: </span></p>
+	<p>リサイズ <span id="dst-width-height">width: height: </span></p>
+	<p><input type="file" accept="image/*" capture="camera" id="file-image"></p>
+	<canvas id="mycanvas">Canvasに対応しているブラウザを使用して下さい。</canvas>
+</main>
 <script src="./js/app.js"></script>
 </body>
 </html>
