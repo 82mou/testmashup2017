@@ -67,15 +67,12 @@
 		img.onload = function(){
 			var w = img.width;
 			var h = img.height;
-			printWidthHeight( 'src-width-height', true, w, h);
 			// モバイルであればリサイズ
 			if(_ua.Mobile[0]){
 				var resize = resizeWidthHeight(1024, w, h);
-				printWidthHeight( 'dst-width-height', resize.flag, resize.w, resize.h);
 				drawImgOnCav(canvas, img, x, y, resize.w, resize.h);
 			}else{
 				// モバイル以外では元サイズ
-				printWidthHeight( 'dst-width-height', false, 0, 0);
 				drawImgOnCav(canvas, img, x, y, w, h);
 			}
 		}
