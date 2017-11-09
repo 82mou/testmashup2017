@@ -144,8 +144,8 @@
 			url: '',
 			data: {
 				fileBinaryData: roadBinaryData,
-				longitude: '',
-				latitude: ''
+				longitude: '35.710277',
+				latitude: '139.777208'
 			}
 		});
 	};
