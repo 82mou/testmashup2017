@@ -1,12 +1,19 @@
 (function() {
+	console.log(axios);
 	var canvas = document.getElementById('mycanvas');
+	var ctx = canvas.getContext('2d');
+	var roadBinaryData;
 	window.onload = function(){
 		if ( checkFileApi() && checkCanvas(canvas) ){
 			//ファイル選択
-			var file_image = document.getElementById('file-image');
+			var file_image = document.getElementsByClassName('js-file-image')[0];
 			file_image.addEventListener('change', selectReadfile, false);
+			var rotateBtn = document.getElementById('js-rotate-btn');
+			rotateBtn.addEventListener('click', drawRotate, false);
+			var submitBtn = document.getElementById('js-submit-btn');
+			submitBtn.addEventListener('click', postFile, false);
 		}
-	}
+	};
 	//canvas に対応しているか
 	function checkCanvas(canvas){
 		if (canvas && canvas.getContext){
@@ -59,6 +66,7 @@
 		reader.readAsDataURL(file[0]);
 		//ファイルの読込が終了した時の処理
 		reader.onload = function(){
+			roadBinaryData = reader.result;
 			readDrawImg(reader, canvas, 0, 0);
 		}
 	}
@@ -87,7 +95,6 @@
 	}
 	//キャンバスにImageを表示
 	function drawImgOnCav(canvas, img, x, y, w, h) {
-		var ctx = canvas.getContext('2d');
 		canvas.width = w;
 		canvas.height = h;
 		ctx.drawImage(img, x, y, w, h);
@@ -119,6 +126,10 @@
 			h: parseInt(h1)
 		};
 	}
+	function drawRotate() {
+		console.log(ctx);
+		ctx.rotate(90/180*Math.PI);
+	}
 	function printWidthHeight( width_height_id, flag, w, h) {
 		var wh = document.getElementById(width_height_id);
 		if(!flag){
@@ -127,4 +138,15 @@
 		}
 		wh.innerHTML = 'width:' + w + ' height:' + h;
 	}
+	function postFile() {
+		axios({
+			method: 'post',
+			url: '',
+			data: {
+				fileBinaryData: roadBinaryData,
+				longitude: '',
+				latitude: ''
+			}
+		});
+	};
 })();
